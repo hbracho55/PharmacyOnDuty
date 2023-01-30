@@ -1,7 +1,6 @@
 package com.hb.pharmacies.client;
 
 import com.hb.pharmacies.dto.InterviewServiceDto;
-import com.hb.pharmacies.dto.PharmacyResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -30,7 +29,6 @@ public class InterviewServiceClientImpl implements InterviewServiceClient{
     public List<InterviewServiceDto> getPharmacies() {
 
         try{
-            HttpHeaders headers= new HttpHeaders();
             List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
             MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
             converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));

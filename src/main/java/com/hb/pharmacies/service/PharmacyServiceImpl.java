@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -23,24 +22,29 @@ public class PharmacyServiceImpl implements PharmacyService{
         try{
             List<InterviewServiceDto> response = interviewServiceClient.getPharmacies();
 
-            if (pharmacyRequestDto.getCommune() != null && pharmacyRequestDto.getStore() != null){
+            String commune = pharmacyRequestDto.getCommune().trim().toUpperCase();
+            String store = pharmacyRequestDto.getStore().trim().toUpperCase();
+
+            if (!pharmacyRequestDto.getCommune().trim().equals("") && !pharmacyRequestDto.getStore().trim().equals("")){
+                System.out.println("entro a la opcion doble");
                 List<InterviewServiceDto> listCommuneStore = response.stream().filter(
-                        (p)->p.getComunaNombre().equals(pharmacyRequestDto.getCommune()) &&
-                                p.getLocalNombre().equals(pharmacyRequestDto.getStore())).toList();
+                        (p)->p.getComunaNombre().equals(commune) &&
+                                p.getLocalNombre().equals(store)).toList();
 
                 return convertData(listCommuneStore);
 
             }else {
-                if (pharmacyRequestDto.getCommune() != null) {
+                if (!pharmacyRequestDto.getCommune().trim().equals("")) {
                     List<InterviewServiceDto> listComunne = response.stream().filter(
-                            (p) -> p.getComunaNombre().equals(pharmacyRequestDto.getCommune())).toList();
+                            (p) -> p.getComunaNombre().equals(commune)).toList();
                     return convertData(listComunne);
                 }
-                if (pharmacyRequestDto.getStore() != null) {
+                if (!pharmacyRequestDto.getStore().trim().equals("")) {
                     List<InterviewServiceDto> listStore = response.stream().filter(
-                            (p) -> p.getLocalNombre().equals(pharmacyRequestDto.getStore())).toList();
+                            (p) -> p.getLocalNombre().equals(store)).toList();
                     return convertData(listStore);
                 }
+
                 return convertData(response);
             }
 
