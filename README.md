@@ -3,11 +3,14 @@
 The backend receive two optional parameters (commmune name and store name) to filter data
 
 endpoint for retrieve data about pharmacies on duty: /pharmacies
+
 http method: POST
+
 bodyRequest optional data: {
     "commune": "INDEPENDENCIA",
     "store": "INDEPENDENCIA"
 }
+
 
 Execute docker container:
 1. docker build -t "pharmacy-app" . (from root project directory)
