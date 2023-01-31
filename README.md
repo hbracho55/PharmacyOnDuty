@@ -1,6 +1,6 @@
 # PharmacyOnDuty
 
-The backend receive two parameters (commmune name and store name) to filter data
+The backend receive two optional parameters (commmune name and store name) to filter data
 
 Execute docker container:
 1. docker build -t "pharmacy-app" . (from root project directory)
